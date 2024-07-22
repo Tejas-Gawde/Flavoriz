@@ -1,0 +1,35 @@
+<script setup lang="ts">
+import { RouterLink } from 'vue-router'
+import Button from '@/components/ui/button/Button.vue'
+import { ChefHat } from 'lucide-vue-next'
+
+export interface Item {
+  title: string
+  link: string
+  img: string
+}
+
+const props = defineProps<{
+  item: Item
+}>()
+</script>
+
+<template>
+  <div
+    class="flex flex-1 flex-col justify-between rounded-2xl border bg-accent p-3 shadow-xl md:px-5 md:pb-5 md:pt-4 lg:min-w-[19rem]"
+  >
+    <span class="text-xl font-medium">{{ props.item.title }}</span>
+    <div>
+      <div class="relative mt-3 w-full overflow-hidden rounded-xl border pt-[100%]">
+        <img
+          :alt="props.item.title"
+          class="absolute left-0 top-0 h-full w-full object-cover"
+          :src="props.item.img"
+        />
+      </div>
+      <RouterLink :to="props.item.title">
+        <Button class="mt-3 w-full rounded-full"> See recipe &nbsp;&nbsp;<ChefHat /> </Button>
+      </RouterLink>
+    </div>
+  </div>
+</template>

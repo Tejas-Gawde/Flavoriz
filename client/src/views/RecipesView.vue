@@ -1,0 +1,44 @@
+<script setup lang="ts">
+import RecipeHero from '@/components/RecipeHero.vue'
+import RecipeList from '@/components/RecipeList.vue'
+import SearchBar from '@/components/SearchBar.vue'
+import RecipePagination from '@/components/RecipePagination.vue'
+import axios from 'axios'
+import { ref, watch } from 'vue'
+import { useRoute, type LocationQuery } from 'vue-router'
+import type { Item } from '@/components/FoodCard.vue'
+
+const recipes = ref<Item[]>([])
+const searchQuery = ref<LocationQuery>()
+const route = useRoute()
+const loading = ref(false)
+
+const fetchData = async () => {
+  try {
+    loading.value = true
+    const response = await axios.get(`http://localhost:3000${route.fullPath}`)
+    recipes.value = response.data
+    console.log(response.data)
+  } catch (error) {
+    console.error('Error fetching data:', error)
+  } finally {
+    loading.value = false
+  }
+}
+
+watch(
+  () => route.query,
+  () => {
+    fetchData()
+  },
+  { immediate: true }
+)
+</script>
+<template>
+  <div>
+    <RecipeHero />
+    <SearchBar v-model="searchQuery" />
+    <RecipeList :loading="loading" :items="recipes" />
+    <RecipePagination />
+  </div>
+</template>
