@@ -24,6 +24,6 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     if (!user) {
       throw new UnauthorizedException('Login first to access this page');
     }
-    return { userId: payload.sub, username: payload.username };
+    return user;
   }
 }

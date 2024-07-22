@@ -6,14 +6,12 @@ import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(
-      'mongodb+srv://Tejas_Recipe:J7HpwCpbtIrnDTnY@cluster0.xfkyoii.mongodb.net/RecipeBlog?retryWrites=true&w=majority&appName=Cluster0',
-    ),
-    RecipesModule,
-    AuthModule,
     ConfigModule.forRoot({
       isGlobal: true,
     }),
+    MongooseModule.forRoot(process.env.MONGO_URI),
+    RecipesModule,
+    AuthModule,
   ],
 })
 export class AppModule {}
