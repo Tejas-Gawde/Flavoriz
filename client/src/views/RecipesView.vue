@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import RecipeHero from '@/components/RecipeHero.vue'
-import RecipeList from '@/components/RecipeList.vue'
+import RecipeHero from '@/components/Recipes/RecipeHero.vue'
+import RecipeList from '@/components/Recipes/RecipeList.vue'
 import SearchBar from '@/components/SearchBar.vue'
-import RecipePagination from '@/components/RecipePagination.vue'
+import RecipePagination from '@/components/Recipes/RecipePagination.vue'
 import axios from 'axios'
 import { ref, watch } from 'vue'
 import { useRoute, type LocationQuery } from 'vue-router'

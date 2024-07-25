@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import HeroSection from '@/components/HeroSection.vue'
-import PopularRecipes from '@/components/PopularRecipes.vue'
+import HeroSection from '@/components/Home/HeroSection.vue'
+import PopularRecipes from '@/components/Home/PopularRecipes.vue'
 </script>
 
 <template>

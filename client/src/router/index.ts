@@ -23,13 +23,22 @@ const router = createRouter({
       component: () => import('../views/RecipesView.vue')
     },
     {
+      path: '/signin',
+      name: 'signin',
+      component: () => import('../views/SigninView.vue')
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: () => import('../views/RegisterView.vue')
+    },
+    {
       path: '/profile',
       name: 'profile',
-      meta: { requiresAuth: true },
-      component: () => import('../views/RecipesView.vue')
+      component: () => import('../views/ProfileView.vue')
     }
   ],
-  scrollBehavior(to, from, savedPosition) {
+  scrollBehavior(to) {
     if (to.hash) {
       return {
         el: to.hash,
