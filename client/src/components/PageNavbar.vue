@@ -1,6 +1,13 @@
 <script setup lang="ts">
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
+import { ChevronDown, ChevronUp } from 'lucide-vue-next'
 import { Button } from '@/components/ui/button'
-import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card'
+import { ref } from 'vue'
+
+const isOpen = ref(false)
+const togglePopover = () => {
+  isOpen.value = !isOpen.value
+}
 </script>
 
 <template>
@@ -17,24 +24,30 @@ import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/h
       <RouterLink to="/signin">
         <Button>Login</Button>
       </RouterLink>
-      <HoverCard :open-delay="100">
-        <HoverCardTrigger
-          ><div class="size-10 rounded-full bg-secondary hover:cursor-pointer"></div
-        ></HoverCardTrigger>
-        <HoverCardContent :side-offset="11" class="w flex flex-col rounded-b-lg">
-          <RouterLink to="/profile">
-            <Button class="w-full border-none" variant="outline">Profile</Button>
-          </RouterLink>
-          <RouterLink to="/profile">
-            <Button class="w-full border-none" variant="outline">Preferences</Button>
-          </RouterLink>
-          <RouterLink to="/profile">
-            <Button class="w-full border-none hover:bg-red-600 hover:text-white" variant="outline"
-              >Logout</Button
-            >
-          </RouterLink>
-        </HoverCardContent>
-      </HoverCard>
+      <Popover @update:open="togglePopover">
+        <PopoverTrigger as-child>
+          <div class="flex cursor-pointer items-center gap-1">
+            <div class="size-10 rounded-full bg-secondary"></div>
+            <ChevronDown v-if="!isOpen" />
+            <ChevronUp v-else="isOpen" />
+          </div>
+        </PopoverTrigger>
+        <PopoverContent class="w-60">
+          <div class="grid gap-4">
+            <RouterLink to="/profile">
+              <Button class="w-full border-none" variant="outline">Profile</Button>
+            </RouterLink>
+            <RouterLink to="/profile">
+              <Button class="w-full border-none" variant="outline">Preferences</Button>
+            </RouterLink>
+            <RouterLink to="/profile">
+              <Button class="w-full border-none hover:bg-red-600 hover:text-white" variant="outline"
+                >Logout</Button
+              >
+            </RouterLink>
+          </div>
+        </PopoverContent>
+      </Popover>
     </div>
   </nav>
 </template>

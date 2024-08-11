@@ -11,7 +11,7 @@ const password = ref('')
 const login = async (email: string, password: string) => {
   try {
     const response = await axios.post(`http://localhost:3000/auth/login`, { email, password })
-    return response.data
+    return console.log(response.data)
   } catch (error) {
     throw error
   }

@@ -9,7 +9,7 @@ import PageFooter from '@/components/PageFooter.vue'
     <PageNavbar />
   </header>
 
-  <RouterView class="z-0 flex h-full flex-col items-center gap-14 pb-10 pt-10" />
+  <RouterView class="z-0 flex h-full flex-col items-center pb-10 pt-10" />
   <footer>
     <PageFooter />
   </footer>

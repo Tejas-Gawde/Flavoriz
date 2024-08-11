@@ -4,7 +4,7 @@ import PopularRecipes from '@/components/Home/PopularRecipes.vue'
 </script>
 
 <template>
-  <div>
+  <div class="gap-14">
     <HeroSection />
     <div>
       <p class="text-center text-5xl font-semibold">

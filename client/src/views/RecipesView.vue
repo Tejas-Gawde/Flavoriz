@@ -16,7 +16,9 @@ const loading = ref(false)
 const fetchData = async () => {
   try {
     loading.value = true
-    const response = await axios.get(`http://localhost:3000${route.fullPath}`)
+    const response = await axios.get(`http://localhost:3000${route.fullPath}`, {
+      withCredentials: true
+    })
     recipes.value = response.data
     console.log(response.data)
   } catch (error) {
@@ -35,7 +37,7 @@ watch(
 )
 </script>
 <template>
-  <div>
+  <div class="gap-14">
     <RecipeHero />
     <SearchBar v-model="searchQuery" />
     <RecipeList :loading="loading" :items="recipes" />
