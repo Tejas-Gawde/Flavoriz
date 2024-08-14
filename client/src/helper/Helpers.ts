@@ -85,3 +85,9 @@ export const tags = [
   { value: 'date_night', label: 'Date Night' },
   { value: 'kids_friendly', label: 'Kids-Friendly' }
 ]
+
+export function generateRecipeURL(recipeName: string, recipeId: string) {
+  const slug = recipeName.trim().toLowerCase().replace(/\s+/g, '-')
+
+  return `recipes/${slug}?recipe=${recipeId}`
+}

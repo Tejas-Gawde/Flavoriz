@@ -21,8 +21,10 @@ const selectedTab = ref('RecipeTab')
         Favourites
       </div>
     </div>
-    <RecipeTab v-if="selectedTab === 'RecipeTab'" />
-    <BookmarkTab v-else="selectedTab === 'BookmarkTab'" />
+    <transition name="fade" mode="out-in">
+      <RecipeTab v-if="selectedTab === 'RecipeTab'" key="RecipeTab" />
+      <BookmarkTab v-else key="BookmarkTab" />
+    </transition>
   </div>
 </template>
 
@@ -39,5 +41,12 @@ const selectedTab = ref('RecipeTab')
 }
 .border-b-hover:hover::after {
   width: 100%;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.25s ease;
+}
+.fade-enter-from, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+  opacity: 0;
 }
 </style>

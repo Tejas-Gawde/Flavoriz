@@ -36,6 +36,17 @@ const router = createRouter({
       path: '/profile',
       name: 'profile',
       component: () => import('../views/ProfileView.vue')
+    },
+    {
+      path: '/recipes/:slug',
+      name: 'recipe-detail',
+      component: () => import('../views/RecipeReadView.vue'),
+      props: (route) => ({ slug: route.params.slug, recipeId: route.query.recipe })
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'notfound',
+      component: () => import('../views/NotfoundView.vue')
     }
   ],
   scrollBehavior(to) {

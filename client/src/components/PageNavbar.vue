@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
-import { ChevronDown, ChevronUp } from 'lucide-vue-next'
+import { ChevronDown, ChevronUp, Plus } from 'lucide-vue-next'
 import { Button } from '@/components/ui/button'
 import { ref } from 'vue'
 
@@ -21,9 +21,10 @@ const togglePopover = () => {
       <RouterLink class="hover:text-secondary" to="/recipes">Recipes</RouterLink>
     </div>
     <div class="flex flex-1 justify-end gap-5">
-      <RouterLink to="/signin">
-        <Button>Login</Button>
-      </RouterLink>
+      <Button as-child><RouterLink to="/signin"> Login </RouterLink></Button>
+      <Button as-child size="icon" variant="ghost"
+        ><RouterLink to="/addrecipe"> <Plus /> </RouterLink
+      ></Button>
       <Popover @update:open="togglePopover">
         <PopoverTrigger as-child>
           <div class="flex cursor-pointer items-center gap-1">
@@ -34,16 +35,23 @@ const togglePopover = () => {
         </PopoverTrigger>
         <PopoverContent class="w-60">
           <div class="grid gap-4">
-            <RouterLink to="/profile">
-              <Button class="w-full border-none" variant="outline">Profile</Button>
+            <RouterLink
+              to="/profile"
+              class="h-10 w-full rounded-md border-none px-4 py-2 text-center text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
+            >
+              Profile
             </RouterLink>
-            <RouterLink to="/profile">
-              <Button class="w-full border-none" variant="outline">Preferences</Button>
+            <RouterLink
+              to="/profile"
+              class="h-10 w-full rounded-md border-none px-4 py-2 text-center text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
+            >
+              Preferences
             </RouterLink>
-            <RouterLink to="/profile">
-              <Button class="w-full border-none hover:bg-red-600 hover:text-white" variant="outline"
-                >Logout</Button
-              >
+            <RouterLink
+              to="/profile"
+              class="h-10 w-full rounded-md border-none px-4 py-2 text-center text-sm font-medium transition-colors hover:bg-red-600 hover:text-white"
+            >
+              Logout
             </RouterLink>
           </div>
         </PopoverContent>

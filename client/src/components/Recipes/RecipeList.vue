@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import FoodCard, { type Item } from '@/components/FoodCard.vue'
+import CardSkeleton from '@/components/CardSkeleton.vue'
 import TagsInput from './TagsInput.vue'
 import { Filter } from 'lucide-vue-next'
 import { Slider } from '@/components/ui/slider'
@@ -15,8 +16,7 @@ const time = ref([0, 360])
 
 defineProps({
   items: {
-    type: Array<Item>,
-    required: true
+    type: Array<Item>
   },
   loading: {
     type: Boolean,
@@ -36,9 +36,10 @@ async function submitSearch() {
 </script>
 <template>
   <div class="flex w-11/12 flex-col">
-    <span class="text-center text-4xl font-semibold"
+    <span class="hidden text-center text-4xl font-semibold md:block"
       >Your <span class="text-secondary">Search</span> Results
     </span>
+    {{ console.log(items) }}
     <div class="mt-8 flex flex-col gap-6 md:flex-row">
       <div class="w-full md:w-[450px]">
         <span class="flex text-center text-2xl font-medium">
@@ -59,8 +60,11 @@ async function submitSearch() {
         <Button @click="submitSearch">Apply Filters</Button>
       </div>
       <div class="h-[1px] bg-zinc-300 md:h-auto md:w-[1px]"></div>
+      <span class="flex text-center text-4xl font-semibold md:hidden"
+        >Your <span class="text-secondary">Search</span> Results
+      </span>
       <div class="grid h-fit w-full grid-cols-2 gap-5 md:gap-10 lg:grid-cols-3">
-        <div v-if="loading">Loading....................</div>
+        <CardSkeleton v-for="n in 12" v-if="loading"></CardSkeleton>
         <FoodCard v-else v-for="item in items" :item="item" />
       </div>
     </div>

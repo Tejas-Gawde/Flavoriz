@@ -2,16 +2,19 @@
 import { RouterLink } from 'vue-router'
 import Button from '@/components/ui/button/Button.vue'
 import { ChefHat } from 'lucide-vue-next'
+import { generateRecipeURL } from '@/helper/Helpers'
 
 export interface Item {
+  _id: string
   title: string
-  link: string
   img: string
 }
 
 const props = defineProps<{
   item: Item
 }>()
+
+const recipeUrl = generateRecipeURL(props.item.title, props.item._id)
 </script>
 
 <template>
@@ -27,7 +30,7 @@ const props = defineProps<{
           :src="props.item.img"
         />
       </div>
-      <RouterLink :to="props.item.title">
+      <RouterLink :to="recipeUrl">
         <Button class="mt-3 w-full rounded-full"> See recipe &nbsp;&nbsp;<ChefHat /> </Button>
       </RouterLink>
     </div>

@@ -23,7 +23,6 @@ function submitSearch() {
   <form class="flex h-11 md:flex-row" @submit.prevent="submitSearch">
     <input
       v-model="searchQuery"
-      id="Search"
       type="text"
       placeholder="Search..."
       class="h-full w-96 rounded-l-lg border border-accent pl-10 shadow-md outline-none hover:bg-accent md:h-11"

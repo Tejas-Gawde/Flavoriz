@@ -1,8 +1,7 @@
 import { Recipes } from 'src/schemas/recipes.schema';
 import { RecipesDto } from './dto/recipes.dto';
 import { RecipesService } from './recipes.service';
-import { Controller, Get, Query, Req, UseGuards } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
+import { Controller, Get, Query, Req } from '@nestjs/common';
 
 @Controller('recipes')
 export class RecipesController {
@@ -15,6 +14,6 @@ export class RecipesController {
     if (query.tags && !Array.isArray(query.tags)) {
       query.tags = [query.tags];
     }
-    return this.recipesService.findAll(query);
+    return await this.recipesService.listAll(query);
   }
 }

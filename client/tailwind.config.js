@@ -23,8 +23,8 @@ module.exports = {
     },
     extend: {
       backgroundImage: {
-        "hero": "url('/images/HeroSection.jpg')",
-        "hero-recipe": "url('/images/RecipeHero.jpg')",
+        "hero": "url('/images/HeroSection.webp')",
+        "hero-recipe": "url('/images/RecipeHero.webp')",
       },
       colors: {
         border: "hsl(var(--border))",

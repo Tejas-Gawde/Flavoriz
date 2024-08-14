@@ -16,11 +16,12 @@ const loading = ref(false)
 const fetchData = async () => {
   try {
     loading.value = true
+    console.log(loading.value)
     const response = await axios.get(`http://localhost:3000${route.fullPath}`, {
       withCredentials: true
     })
     recipes.value = response.data
-    console.log(response.data)
+    console.log(recipes.value)
   } catch (error) {
     console.error('Error fetching data:', error)
   } finally {
