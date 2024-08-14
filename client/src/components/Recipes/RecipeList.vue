@@ -64,8 +64,8 @@ async function submitSearch() {
         >Your <span class="text-secondary">Search</span> Results
       </span>
       <div class="grid h-fit w-full grid-cols-2 gap-5 md:gap-10 lg:grid-cols-3">
-        <CardSkeleton v-for="n in 12" v-if="loading"></CardSkeleton>
-        <FoodCard v-else v-for="item in items" :item="item" />
+        <CardSkeleton v-for="n in 12" :key="n" v-if="loading" />
+        <FoodCard v-else v-for="(item, i) in items" :key="i" :item="item" />
       </div>
     </div>
   </div>

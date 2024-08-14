@@ -25,11 +25,12 @@ export class RecipesService {
     const pageNumber = page ? page : 1;
     const skip = (pageNumber - 1) * pageSize;
 
-    return this.recipesModel
+    const data = await this.recipesModel
       .find(filter)
-      .select('_id title img')
       .skip(skip)
       .limit(pageSize)
       .exec();
+
+    return data;
   }
 }

@@ -31,7 +31,7 @@ const items = [
       >Popular <span class="text-secondary">Recipes</span> Today</span
     >
     <div class="mt-5 grid grid-cols-2 justify-between gap-10 md:grid-cols-3 lg:grid-cols-4">
-      <FoodCard v-for="item in items" :item="item" />
+      <FoodCard v-for="(item, i) in items" :key="i" :item="item" />
     </div>
   </div>
 </template>

@@ -7,7 +7,7 @@ import Button from '@/components/ui/button/Button.vue'
     class="flex h-96 w-11/12 items-center rounded-3xl border bg-hero bg-cover bg-center px-8 shadow-lg md:h-[600px] md:px-0"
   >
     <div
-      class="flex h-3/5 flex-col justify-between rounded-3xl bg-[hsl(0,_0%,_98%)] bg-background p-10 shadow-2xl md:ml-16 md:w-2/5"
+      class="flex h-auto flex-col justify-between gap-2 rounded-3xl bg-[hsl(0,_0%,_98%)] bg-background p-10 shadow-2xl md:ml-16 md:h-3/5 md:w-2/5 md:gap-0"
     >
       <div>
         <span class="text-2xl font-medium md:text-5xl">Adventure</span>
