@@ -1,16 +1,38 @@
 <script setup lang="ts">
 import Button from '@/components/ui/button/Button.vue'
+import axios from 'axios'
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+const username = ref('')
+const email = ref('')
+const password = ref('')
+
+async function handleSubmit() {
+  try {
+    const response = await axios.post(
+      'http://localhost:3000/auth/signup',
+      {
+        username: username.value,
+        email: email.value,
+        password: password.value
+      },
+      {
+        withCredentials: true
+      }
+    )
+
+    if (response.data) {
+      router.push('/')
+    }
+  } catch (error) {
+    console.error('Registration error:', error)
+  }
+}
 </script>
 
 <template>
-  <!--
-      This example requires updating your template:
-  
-      ```
-      <html class="h-full bg-white">
-      <body class="h-full">
-      ```
-    -->
   <div class="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
       <p class="flex-1 text-center text-3xl font-medium">
@@ -22,13 +44,14 @@ import Button from '@/components/ui/button/Button.vue'
     </div>
 
     <div class="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
-      <form class="space-y-6" action="#" method="POST">
+      <form v-on:submit.prevent="handleSubmit" class="space-y-6" method="POST">
         <div>
-          <label for="email" class="block text-sm font-medium leading-6 text-gray-900"
+          <label for="username" class="block text-sm font-medium leading-6 text-gray-900"
             >Username</label
           >
           <div class="mt-2">
             <input
+              v-model="username"
               id="username"
               name="username"
               type="text"
@@ -43,6 +66,7 @@ import Button from '@/components/ui/button/Button.vue'
           >
           <div class="mt-2">
             <input
+              v-model="email"
               id="email"
               name="email"
               type="email"
@@ -66,6 +90,7 @@ import Button from '@/components/ui/button/Button.vue'
           </div>
           <div class="mt-2">
             <input
+              v-model="password"
               id="password"
               name="password"
               type="password"

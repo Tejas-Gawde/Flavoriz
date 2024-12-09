@@ -2,10 +2,24 @@
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { ChevronDown, ChevronUp, Plus, Menu } from 'lucide-vue-next'
 import { Button } from '@/components/ui/button'
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 
 const isOpen = ref(false)
 const isMenuOpen = ref(false)
+
+const isAuthenticated = ref(false)
+
+// Check for authentication on component mount
+onMounted(async () => {
+  try {
+    const response = await fetch('/api/auth/check', {
+      credentials: 'include' // Important for cookies
+    })
+    isAuthenticated.value = response.ok
+  } catch (error) {
+    isAuthenticated.value = false
+  }
+})
 
 function togglePopover() {
   isOpen.value = !isOpen.value
@@ -37,9 +51,9 @@ const variantClass = computed(() => (isMenuOpen.value ? 'opacity-100' : 'opacity
     class="mx-auto border-b border-gray-300 bg-background px-5 py-3 md:flex md:items-center md:justify-between"
   >
     <div class="flex flex-1 items-center justify-between">
-      <span class="flex-1 text-2xl font-medium"
-        >Flavou<span class="text-secondary">riz</span>
-      </span>
+      <RouterLink class="flex-1" to="/recipes">
+        <span class="text-2xl font-medium">Flavou<span class="text-secondary">riz</span> </span>
+      </RouterLink>
       <div class="hidden flex-1 justify-center gap-5 sm:flex">
         <RouterLink
           class="rounded-md p-2 transition-colors hover:bg-accent/50 hover:text-secondary"
@@ -53,7 +67,7 @@ const variantClass = computed(() => (isMenuOpen.value ? 'opacity-100' : 'opacity
       <div class="hidden flex-1 justify-end gap-5 sm:flex">
         <Button as-child><RouterLink to="/signin"> Login </RouterLink></Button>
         <Button as-child size="icon" variant="ghost"
-          ><RouterLink to="/addrecipe"> <Plus /> </RouterLink
+          ><RouterLink to="/add-recipe"> <Plus /> </RouterLink
         ></Button>
         <Popover @update:open="togglePopover">
           <PopoverTrigger as-child>

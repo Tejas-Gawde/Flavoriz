@@ -44,6 +44,12 @@ const router = createRouter({
       props: (route) => ({ slug: route.params.slug, recipeId: route.query.recipe })
     },
     {
+      path: '/add-recipe',
+      name: 'add-recipe',
+      component: () => import('../views/AddView.vue'),
+      props: (route) => ({ slug: route.params.slug, recipeId: route.query.recipe })
+    },
+    {
       path: '/:pathMatch(.*)*',
       name: 'notfound',
       component: () => import('../views/NotfoundView.vue')
